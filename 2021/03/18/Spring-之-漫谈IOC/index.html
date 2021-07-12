@@ -20,7 +20,7 @@
   <meta name="author" content="StarryX">
   <meta name="keywords" content="">
   
-  <title>Spring 之 漫谈IOC - StarryX&#39;s Blog</title>
+  <title>Spring 之 漫谈IoC - StarryX&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -165,9 +165,9 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="Spring 之 漫谈IOC">
+            <span class="h2" id="subtitle" title="Spring 之 漫谈IoC">
               
-                Spring 之 漫谈IOC
+                Spring 之 漫谈IoC
               
             </span>
 
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      682 字
+      680 字
     </span>
   
 
@@ -237,12 +237,12 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Spring 之 漫谈IOC</h1>
+            <h1 style="display: none">Spring 之 漫谈IoC</h1>
             
             <div class="markdown-body">
-              <h1 id="IOC-和-DI"><a href="#IOC-和-DI" class="headerlink" title="IOC  和  DI"></a>IOC  和  DI</h1><p>​    IOC，Inversion of Control，即控制反转，是面向对象编程中的一种思想，或者说是一个程序设计中要达到的目的。</p>
-<p>​    DI，Dependency Injection，即依赖注入，是实现 IOC 的一种方法，或者说是达到 IOC 这一目的的一个过程。</p>
-<h1 id="IOC-的好处"><a href="#IOC-的好处" class="headerlink" title="IOC 的好处"></a>IOC 的好处</h1><p>​    举个例子，假如我们要设计一辆汽车：先设计轮子，然后根据轮子大小设计底盘，接着根据底盘设计车身，最后根据车身设计好整个汽车。这里就出现了一个“依赖”关系：汽车依赖车身，车身依赖底盘，底盘依赖轮子。</p>
+              <h1 id="IoC-和-DI"><a href="#IoC-和-DI" class="headerlink" title="IoC  和  DI"></a>IoC  和  DI</h1><p>​    IoC，Inversion of Control，即控制反转，是面向对象编程中的一种思想，或者说是一个程序设计中要达到的目的。</p>
+<p>​    DI，Dependency Injection，即依赖注入，是实现 IoC 的一种方法，或者说是达到 IoC 这一目的的一个过程。</p>
+<h1 id="IoC-的好处"><a href="#IoC-的好处" class="headerlink" title="IoC 的好处"></a>IoC 的好处</h1><p>​    举个例子，假如我们要设计一辆汽车：先设计轮子，然后根据轮子大小设计底盘，接着根据底盘设计车身，最后根据车身设计好整个汽车。这里就出现了一个“依赖”关系：汽车依赖车身，车身依赖底盘，底盘依赖轮子。</p>
 <p><img src="https://pic4.zhimg.com/80/v2-c68248bb5d9b4d64d22600571e996446_1440w.jpg?source=1940ef5c" srcset="/img/loading.gif"></p>
 <p>​    根据上面的场景，我们用代码模拟出来的样子是这样的：</p>
 <p><img src="https://pic4.zhimg.com/80/v2-8ec294de7d0f9013788e3fb5c76069ef_1440w.jpg?source=1940ef5c" srcset="/img/loading.gif"></p>
@@ -255,9 +255,9 @@
 <p><img src="https://pic4.zhimg.com/80/v2-c920a0540ce0651003a5326f6ef9891d_1440w.jpg?source=1940ef5c" srcset="/img/loading.gif"></p>
 <p>这里我们再把轮胎大小变成可动态改变的，同样为了让整个系统顺利运行，我们需要做如下修改：</p>
 <p><img src="https://pic1.zhimg.com/80/v2-99ad2cd809fcb86dd791ff7f65fb1779_1440w.jpg?source=1940ef5c" srcset="/img/loading.gif"></p>
-<p>​    <strong>这样一修改，将创建所依赖的类的控制权，由类本身转交到其他地方，所依赖的类不再由类自己创建，而是通过传参的方式，注入到类中。这就是依赖注入（DI），这样的代码组织方式就实现了控制反转（IOC）这一目的。如果从类之间关系关系的角度说，就是将原来的组合关系改造成聚合关系，进而降低类之间的耦合度，提高可维护性。</strong></p>
-<p>​    其实这里已经简单实现了 IOC 。但仔细观察就会发现，每当要使用 Car 这个类，都要从 Tire 这个类开始创建，然后再一个个去注入，每次要用都要手动写这么一段代码。如果类的依赖链变长，人都写傻了。</p>
-<p>​    这时，Spring 的 IOC 容器就出现了。它的作用就将依赖注入这一过程自动化，我们只需事先将所需要的类在配置文件中配置好，Spring 就会自动帮我们创建这些对象，我们用的时候就去里面取就行。Spring 的 IOC 容器本质就是一个 Bean 工厂（工厂模式），所以它的顶级接口就叫做 BeanFactory 。</p>
+<p>​    <strong>这样一修改，将创建所依赖的类的控制权，由类本身转交到其他地方，所依赖的类不再由类自己创建，而是通过传参的方式，注入到类中。这就是依赖注入（DI），这样的代码组织方式就实现了控制反转（IoC）这一目的。如果从类之间关系的角度说，就是将原来的组合关系改造成聚合关系，进而降低类之间的耦合度，提高可维护性。</strong></p>
+<p>​    其实这里已经简单实现了 IoC 。但仔细观察就会发现，每当要使用 Car 这个类，都要从 Tire 这个类开始创建，然后再一个个去注入，每次要用都要手动写这么一段代码。如果类的依赖链变长，人都写傻了。</p>
+<p>​    这时，Spring 的 IoC 容器就出现了。它的作用就将依赖注入这一过程自动化，我们只需事先将所需要的类在配置文件中配置好，Spring 就会自动帮我们创建这些对象，我们用的时候就去里面取就行。Spring 的 IoC 容器本质就是一个 Bean 工厂（工厂模式），所以它的顶级接口就叫做 BeanFactory 。</p>
 <hr>
 <h1 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h1><ul>
 <li><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/23277575/answer/169698662">https://www.zhihu.com/question/23277575/answer/169698662</a></li>
@@ -281,7 +281,7 @@
                     
                       <a class="hover-with-bg" href="/tags/Spring/">Spring</a>
                     
-                      <a class="hover-with-bg" href="/tags/IOC/">IOC</a>
+                      <a class="hover-with-bg" href="/tags/IoC/">IoC</a>
                     
                       <a class="hover-with-bg" href="/tags/DI/">DI</a>
                     
